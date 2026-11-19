@@ -96,3 +96,19 @@ Next executable command after network/cache availability:
 then `python3 scripts/download_model.py > evidence/download-model-resume.log 2>&1`
 and `python3 scripts/run_exact.py --gpus 6,7 --label main-exact`.
 Do not start a background inference service from an incomplete environment.
+
+## Latest upstream refresh — supersedes the initial no-PR search
+
+- Issue remains open, comments0, no assignees.
+- Found draft/open/unmerged PR #10725 by psv666, created2026-11-19T08:27:22Z,
+  head5c23a02dc3b0a3af45541ddbd6aa122c273499cd, base9a2ae280.
+  Read body, actual diff and empty comments. The sole change removes the
+  reduced_token_params variant from test_text_audio_to_text_audio_002.
+- It reports external L20X original-setting reproduction2/20 five-request groups,
+  and greedy Talker+code-predictor9/15 groups. No independent H100 replay here.
+  This is test selection, not a diagnosed production fix. Do not duplicate it,
+  apply it to hide the original node, or treat it as resolution of this task.
+- Evidence: evidence/github-final-status.json. Recheck its latest head before
+  resuming. No upstream comments/PR were sent by this task.
+- First local docs/script checkpoint: d9596bc668931398b76fd5a3d84a1f44b69a8dc0.
+  A follow-up records this upstream discovery; final HEAD is in BACKUP_STATE.json.

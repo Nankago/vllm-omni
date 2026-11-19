@@ -4,7 +4,8 @@
 
 ## 已核实的事实
 
-- 最新 [issue #10663](https://github.com/vllm-project/vllm-omni/issues/10663) 为 open，无评论、无指派人员。按 issue 编号搜索未发现关联 PR。GitHub 原始快照：`evidence/github-status.json`。
+- 最新 [issue #10663](https://github.com/vllm-project/vllm-omni/issues/10663) 为 open，无评论、无指派人员。初次按编号搜索未发现关联 PR，收尾刷新发现 **draft PR #10725**（见下一项）。初次/最终快照：`evidence/github-status.json`、`github-final-status.json`。
+- 已阅读 [PR #10725](https://github.com/vllm-project/vllm-omni/pull/10725) 最新正文、diff、评论（0条）。作者 psv666，open/draft/unmerged，head `5c23a02dc3b0a3af45541ddbd6aa122c273499cd`。它**只删除**长音频测试的 `batch_token_2048` 参数，属于 CI 范围调整，没有生产代码修复。作者报告在 L20X 上原设置失败2/20组，Talker及code predictor均greedy时失败9/15组；这些是外部报告，不是本次H100验证或根因证据。不要重复该补丁，也不要把移除用例当作问题解决。
 - 本任务独立 checkout：`checkout/`，分支 `codex/qwen3-omni-audio-mismatch`。产品代码基线为 main `9a2ae280e6bc3f92f57d22a2243bd064fe7a2faf`。未修改其他任务源码、依赖、进程或根目录的旧 HANDOFF。
 - 原 issue SHA `1194d6ba2096459f8d96af06fbfb765b14e01cac` 已获取用于对照；未安装或运行原 revision 环境。其测试、输入/ASR/断言 helper 及 CUDA 依赖锁与当前 main 一致。Qwen3-Omni 生产代码存在变化，不能把两版本视为等同。
 - **原测试是 5 个并发、相同 payload 的请求**，并非 5 个串行请求。`send_omni_request()` 通过 `ThreadPoolExecutor(max_workers=5)` 发出，按 `as_completed()` 做 ASR 和断言。“最后一个相似度低”表示最后完成/被检查的响应，不能证明状态随请求次数累积退化。给这 5 个相同输入重新编号或排序不能改变输入序列。

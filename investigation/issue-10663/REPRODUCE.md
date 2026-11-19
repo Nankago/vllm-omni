@@ -6,7 +6,7 @@ These are prepared commands, not successful inference evidence. Current result i
 cd /gemini-0/space/private/lmx/temp-restore/Vllm-Omni/issue-10663
 ```
 
-Check `HANDOFF.md` and `evidence/stopped-network-jobs.json` before starting; do not duplicate a downloader. Use the approved command executor if the default sandbox helper is still missing. Do not change proxy/TLS configuration or other task environments.
+Recheck draft PR #10725: it removes this test variant rather than fixing the production path. Keep the pinned original node for diagnosis. Check `HANDOFF.md` and `evidence/stopped-network-jobs.json` before starting; do not duplicate a downloader. Use the approved command executor if the default sandbox helper is still missing. Do not change proxy/TLS configuration or other task environments.
 
 ## Complete the independent environment
 

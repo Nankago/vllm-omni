@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-11-19T08:48:00Z",
+  "issue": {
+    "state": "open",
+    "comments": 0,
+    "assignees": []
+  },
+  "related_pull_request": {
+    "number": 10725,
+    "url": "https://github.com/vllm-project/vllm-omni/pull/10725",
+    "title": "[CI/Build] Drop flaky Qwen3-Omni long-audio 2048-token variant",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head_sha": "5c23a02dc3b0a3af45541ddbd6aa122c273499cd",
+    "base_sha": "9a2ae280e6bc3f92f57d22a2243bd064fe7a2faf",
+    "author": "psv666",
+    "created_at": "2026-11-19T08:27:22Z",
+    "comments": 0,
+    "diff": "@@ -181,7 +181,7 @@ def test_text_video_to_text_001(omni_server, online_client) -> None:\n \n \n @hardware_test(res={\"cuda\": [\"H100\", \"B200\"], \"rocm\": \"MI325\"}, num_cards=2)\n-@pytest.mark.parametrize(\"omni_server\", test_params + reduced_token_params, indirect=True)\n+@pytest.mark.parametrize(\"omni_server\", test_params, indirect=True)\n def test_text_audio_to_text_audio_002(omni_server, online_client) -> None:\n     \"\"\"\n     Input Modal: text, long-duration audio (~LONG_AUDIO_DURATION_SEC s WAV)",
+    "reported_results": {
+      "hardware": "2 GPUs reported as L20X",
+      "original_settings": "2 failing groups / 20 five-request batches",
+      "greedy_talker_and_code_predictor": "9 failing groups / 15 completed batches",
+      "independently_verified": false
+    },
+    "assessment": "Changes test selection only; removes batch_token_2048 from long-audio test. No production defect diagnosis/fix or independent H100 validation in this investigation."
+  }
+}
