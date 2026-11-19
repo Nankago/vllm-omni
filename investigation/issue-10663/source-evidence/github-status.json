@@ -1,0 +1,119 @@
+{
+  "retrieved_at": "2026-11-19",
+  "issue": {
+    "issue": {
+      "id": 6469625190,
+      "url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+      "title": "[Bug]: Nightly CI failed - tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048] - AssertionError: The audio content is not same as the text (similarity 0.6675 < 0.8)",
+      "issue_number": 10663,
+      "body": "### Your current environment\n\n<details>\n<summary>The output of <code>python collect_env.py</code></summary>\n\n```text\nNightly CI (Buildkite vllm/vllm-omni #20145, scheduled nightly build)\nBranch: release/v0.34.0\nQueue: mithril-h100-pool, 2x NVIDIA H100 80GB HBM3, node inf-4x8h100-2-2\n```\n\n</details>\n\n### Your code version\n\n<details>\n<summary>The commit id or version of vllm</summary>\n\n```text\n0.34.0\n```\n</details>\n<details>\n<summary>The commit id or version of vllm-omni</summary>\n\n```text\n1194d6ba2096459f8d96af06fbfb765b14e01cac\n```\n</details>\n\n### 🐛 Describe the bug\n\n**Buildkite build:** https://buildkite.com/vllm/vllm-omni/builds/20145\n**Buildkite step:** [Omni · Function Test with H100 · 2-GPU](https://buildkite.com/vllm/vllm-omni/builds/20145#01a1ee1d-fa96-4bc2-a325-5d4f45ffa6ef)\n\n**Failure kind:** pytest FAILED\n**Test node:** `tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048]`\n\n**Log reason:**\nAssertionError: The audio content is not same as the text (tests/helpers/assertions.py:1015). Cosine similarity of the Whisper transcript vs the model's text was 0.6675 on the last request; threshold is 0.8.\n\n**Analysis:**\nThe same test issued several requests. The first three had similarity ≈ 1.0; the fourth was 0.9933; the fifth (last) fell to 0.6675. The model text still correctly described a repeating robotic \"test\"; the Whisper transcript started similarly then drifted into garbage (`hutch test` … `a turn, the sot, sadi of dash kaya...`). This log does not by itself prove whether later-request audio quality degraded, Whisper hallucinated, or both; the wav was not inspected here. Closed #6047 used the same assertion message on a MiniCPM-o test, not this Qwen3-Omni node.\n\n**Error log excerpt:**\n\n```text\nThe first three requests had similarity ≈ 1.0; the fourth was 0.9933.\nThe fifth (last) request: similarity 0.6675 < 0.8\nE   AssertionError: The audio content is not same as the text\nFAILED tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048]\n```\n\n### Before submitting a new issue...\n\n- [x] Make sure you already searched for relevant issues, and asked the chatbot living at the bottom right corner of the [documentation page](https://vllm-omni.readthedocs.io), which can answer lots of frequently asked questions.\n",
+      "state": "open",
+      "user": {
+        "login": "yenuo26",
+        "name": "yenuo26",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/53896905?v=4",
+        "id": 53896905
+      },
+      "assignees": null,
+      "labels": [
+        {
+          "name": "bug",
+          "color": "d73a4a",
+          "description": "Something isn't working"
+        },
+        {
+          "name": "high priority",
+          "color": "c53308",
+          "description": "high priority issue, needs to be done asap"
+        },
+        {
+          "name": "ci-failure",
+          "color": "80193d",
+          "description": "CI failure issues, expected to be solved asap"
+        }
+      ],
+      "milestone": 12,
+      "state_reason": null,
+      "comments": 0,
+      "created_at": "2026-11-18T14:40:28Z",
+      "updated_at": "2026-11-18T14:41:16Z",
+      "closed_at": null,
+      "display_url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+      "display_title": "[Bug]: Nightly CI failed - tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048] - AssertionError: The audio content is not same as the text (similarity 0.6675 < 0.8)"
+    },
+    "url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+    "title": "[Bug]: Nightly CI failed - tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048] - AssertionError: The audio content is not same as the text (similarity 0.6675 < 0.8)",
+    "display_url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+    "display_title": "[Bug]: Nightly CI failed - tests/e2e/online_serving/test_qwen3_omni_expansion.py::test_text_audio_to_text_audio_002[batch_token_2048] - AssertionError: The audio content is not same as the text (similarity 0.6675 < 0.8)"
+  },
+  "comments": {
+    "comments": [],
+    "url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+    "title": "vllm-project/vllm-omni Issue #10663 comments",
+    "display_url": "https://github.com/vllm-project/vllm-omni/issues/10663",
+    "display_title": "vllm-project/vllm-omni Issue #10663 comments"
+  },
+  "related_pr_search": [
+    {
+      "number": 10720,
+      "title": "[CI/Build][release/v0.34.0] Backport Qwen3-Omni runtime OOM workload fix",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10720"
+    },
+    {
+      "number": 10707,
+      "title": "[Bugfix][Ascend] Avoid circular import during A5 platform initialization",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10707"
+    },
+    {
+      "number": 8277,
+      "title": "[Bugfix] Return 400 for vLLM client errors in /v1/audio/speech",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/8277"
+    },
+    {
+      "number": 10152,
+      "title": "[CI/Build] Align Qwen3-Omni benchmarks with the scenario matrix",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10152"
+    },
+    {
+      "number": 10696,
+      "title": "[Hardware][Ascend] Backport Qwen3-Omni text-only latency fix to v0.34.0",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10696"
+    },
+    {
+      "number": 10671,
+      "title": "[Perf][JoyAI] Enable fused Qwen3-TTS code predictor and Code2Wav convolution options in the duplex profile",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10671"
+    },
+    {
+      "number": 10552,
+      "title": "[Model] Add AURA 2.0 support",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10552"
+    },
+    {
+      "number": 10443,
+      "title": "[Core] Support Qwen3-Omni DFlash and resumable speech on MRv2",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10443"
+    },
+    {
+      "number": 10631,
+      "title": "[Hardware][Ascend] Skip Qwen3-Omni Talker payloads for text-only batches",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10631"
+    },
+    {
+      "number": 10628,
+      "title": "[Hardware][Ascend][Model] Qwen3-ASR: standalone Omni pipeline",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10628"
+    },
+    {
+      "number": 10683,
+      "title": "[Bugfix][ROCm] Repair vLLM 0.34 AMD CI regressions",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10683"
+    },
+    {
+      "number": 10366,
+      "title": "[Model] Add Duo 1.0 causal-base full-duplex world model (H3 Realization)",
+      "url": "https://github.com/vllm-project/vllm-omni/pull/10366"
+    }
+  ]
+}

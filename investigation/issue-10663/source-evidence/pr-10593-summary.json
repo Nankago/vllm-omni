@@ -1,0 +1,10 @@
+{
+  "url": "https://github.com/vllm-project/vllm-omni/pull/10593",
+  "title": "[Bugfix] Capture Qwen3-Omni and Qwen3-TTS Code2Wav graphs after load, not under vLLM's load-time split limit",
+  "state": "closed",
+  "merged": true,
+  "merged_at": "2026-11-18T16:43:22Z",
+  "merge_commit_sha": "8eb8565079fd4e056befebb5d09202e2d1f00368",
+  "head_sha": "e152cc3c4d078b479c1b6fb4bf314555672bc344",
+  "scope": "Code2Wav CUDA graph capture after weight load to reduce allocator pool overhead; no demonstrated fix of #10663 audio/text mismatch."
+}
